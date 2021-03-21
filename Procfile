@@ -1,1 +1,1 @@
-web: gunicorn denissivy.wsgi
+web: gunicorn awaards.wsgi
