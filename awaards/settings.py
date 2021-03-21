@@ -78,15 +78,12 @@ WSGI_APPLICATION = 'awaards.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'awaads',
-        'USER': 'ali',
-    'PASSWORD':'ali',
-    'HOST':'localhost',
-    'PORT':'5432'
-    }
-}
+            'default':dj_database_url.config(
+                default=config('DATABASE_URL')
+            )
+        }
+db_from_env = dj_database_url.config(conn_max_age=5000)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
