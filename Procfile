@@ -1,1 +1,1 @@
-web: gunicorn denissivy.wsgi --log-file -
+web: gunicorn denissivy.wsgi
