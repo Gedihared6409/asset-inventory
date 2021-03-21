@@ -107,7 +107,7 @@ DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS = ['denissivy.herokuapp.com','127.0.0.1']
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
