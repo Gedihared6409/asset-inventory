@@ -7,10 +7,10 @@
 <div class="row">
 	<div class="col-md">
 		<div class="card card-body">
-			<h5>Customer:</h5>
+			<h5>Employee:</h5>
 			<hr>
-			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
-			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'create_order' customer.id %}">Place Order</a>
+			<!-- <a class="btn btn-outline-info  btn-sm btn-block" href="">Update Employee</a>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'create_order' customer.id %}">Place Order</a> -->
 
 		</div>
 	</div>
@@ -19,8 +19,8 @@
 		<div class="card card-body">
 			<h5>Contact Information</h5>
 			<hr>
-			<p>Email: {{customer.email}}</p>
-			<p>Phone: {{customer.phone}}</p>
+			<p>Email: {{Employee.email}}</p>
+			<p>Phone: {{Employee.phone}}</p>
 		</div>
 	</div>
 

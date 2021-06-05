@@ -4,14 +4,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 urlpatterns=[
-    # path('',views.welcome,name = 'welcome'),
+    path('',views.welcome,name = 'welcome'),
     path('account/', views.accountSettings, name="account"),
 
     path('register/', views.registerPage, name="register"),
 	path('login/', views.loginPage, name="login"),  
 	path('logout/', views.logoutUser, name="logout"),
     path('user/', views.userPage, name = "user-page"),
-    path('', views.home, name="home"),
+    path('userpageform/<str:pk_test>/', views.userPageform, name = "userpageform"),
+    path('userrepairform/<str:pk_test>/', views.userrepairPageform, name = "userrepairpageform"),
+    path('welcome', views.home, name="home"),
     path('products/', views.products, name='products'),
     path('customer/<str:pk_test>/', views.customer, name="customer"),
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import  OrderForm,CreateUserForm,CustomerForm
+from .forms import  OrderForm,CreateUserForm,CustomerForm,OrderFormAdmin
 from .decorators import unauthenticated_user,allowed_users,admin_only
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
@@ -12,7 +12,8 @@ from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
-
+def welcome(request):
+     return render(request, 'accounts/index.html')
 @unauthenticated_user
 def registerPage(request):
     form = CreateUserForm(request.POST)
@@ -43,7 +44,7 @@ def loginPage(request):
     return render(request, 'accounts/login.html', context)
 def logoutUser(request):
 	logout(request)
-	return redirect('login')
+	return redirect('home')
 @login_required(login_url='login')
 @admin_only
 def home(request):
@@ -54,17 +55,19 @@ def home(request):
     
     total_orders = orders.count()
     delivered = orders.filter(status='Delivered').count()
+    Out_for_delivery = orders.filter(status='Out for delivery').count()
     pending = orders.filter(status='Pending').count()
 
     context = {'orders':orders, 'customers':customers,
     'total_orders':total_orders,'delivered':delivered,
-    'pending':pending }
+    'pending':pending ,'Out_for_delivery':Out_for_delivery}
     
     return render(request, 'accounts/dashboard.html',context)
 @login_required(login_url='login')
-@allowed_users(allowed_roles= ['customer'])
+@allowed_users(allowed_roles= ['employee'])
 def accountSettings(request):
         customer = request.user.customer
+        print(customer)
         form = CustomerForm(instance=customer)
         if request.method == 'POST':
             form = CustomerForm(request.POST, request.FILES,instance=customer)
@@ -98,21 +101,56 @@ def customer(request, pk_test):
     return render(request, 'accounts/customer.html',context)
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles= ['customer'])
+@allowed_users(allowed_roles= ['employee'])
 def userPage(request):
+    customer = request.user.customer
+   
     orders = request.user.customer.order_set.all()
     total_orders = orders.count()
     delivered = orders.filter(status='Delivered').count()
+    Out_for_delivery = orders.filter(status='Out for delivery').count()
     pending = orders.filter(status='Pending').count()
-    context = {'orders':orders,'total_orders':total_orders,'delivered':delivered,
+    context = {'orders':orders, 'Out_for_delivery':Out_for_delivery, 'customer' :customer, 'total_orders':total_orders,'delivered':delivered,
     'pending':pending }
     return render(request,'accounts/user.html',context)
 
+def userPageform(request,pk_test):
+    form = OrderForm()
+    userr = request.user.customer
+    
+    if request.method == 'POST':
+        # print('Printing POST:', request.POST)
+        form = OrderForm(request.POST)
+        if form.is_valid():
+                obj = form.save(commit=False)
+                obj.customer = userr
+                obj.save()
+                return redirect('home')
 
+    context = {'form':form ,'userr':userr}
+    
+    return render(request,'accounts/new_Asset_form.html',context)
 
+def userrepairPageform(request,pk_test):
+    reuserr = request.user.customer
+    form = OrderForm()
+    if request.method == 'POST':
+        # print('Printing POST:', request.POST)
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.customer = reuserr
+            obj.save()
+            return redirect('home')
+
+    context = {'form':form}
+    
+    return render(request,'accounts/repair_Asset_form.html',context)
 @login_required(login_url='login')
 @allowed_users(allowed_roles= ['admin'])
 def createOrder(request,pk):
+    result = request.user
+    
     customer = Customer.objects.get(id=pk)
     form = OrderForm(initial={'customer':customer})
     if request.method == 'POST':
@@ -120,7 +158,7 @@ def createOrder(request,pk):
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('home')
 
     context = {'form':form}
     return render(request, 'accounts/order_form.html', context)
@@ -130,12 +168,13 @@ def createOrder(request,pk):
 def updateOrder(request, pk):
     order = Order.objects.get(id=pk)
     
-    form = OrderForm(instance=order)
+    form = OrderFormAdmin(instance=order)
     if request.method == 'POST':
-        form = OrderForm(request.POST, instance=order)
+        form = OrderFormAdmin(request.POST, instance=order)
         if form.is_valid():
-            form.save()
-            return redirect('/')
+            ref = form.save()
+            print(ref.status)
+            return redirect('home')
 
     context = {'form':form}
     return render(request, 'accounts/order_form.html', context)
@@ -146,7 +185,7 @@ def deleteOrder(request, pk):
     order = Order.objects.get(id=pk)
     if request.method == 'POST':
         order.delete()
-        return redirect('/')
+        return redirect('home')
 
 
     context = {'item':order}

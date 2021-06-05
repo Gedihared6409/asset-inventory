@@ -3,11 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CRM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=500, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86">
+
+	<title>Asset Inventory</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
-
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 </head>
 <body>
 	{%  include 'accounts/navbar.html' %}
@@ -19,7 +24,9 @@
 	{% endblock %}
     </div>
 	<hr>
-	<h5>Our footer</h5>
+
+	{%  include 'accounts/footer.html' %}
+
 	
 </body>
 
