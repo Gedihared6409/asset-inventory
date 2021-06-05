@@ -21,7 +21,7 @@ class OrderForm(ModelForm):
 class OrderFormAdmin(ModelForm):
 	class Meta:
 		model = Order
-		fields = '__all__'
+		fields = [ 'product', 'urgent', 'note','status']
 	
 
 class CreateUserForm(UserCreationForm):

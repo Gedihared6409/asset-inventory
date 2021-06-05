@@ -105,7 +105,7 @@ else:
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-ALLOWED_HOSTS = ['denissivy.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['assets-inventoryy.herokuapp.com','127.0.0.1']
 
 
 # Password validation

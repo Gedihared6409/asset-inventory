@@ -20,7 +20,7 @@ def registerPage(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
             username = form.cleaned_data.get('username')
           
             messages.success(request, 'account was created for ' + username)
@@ -82,7 +82,6 @@ def products(request):
     products = Product.objects.all()
 
     return render(request, 'accounts/products.html',{'products':products})
-
 @login_required(login_url='login')
 @allowed_users(allowed_roles= ['admin'])
 def customer(request, pk_test):
