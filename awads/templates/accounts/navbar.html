@@ -4,13 +4,18 @@
 <style>
   .hello-msg{
     font-size: 18px;
-    color: #fff;
+    color:green;
     margin-right: 20px;
+  }
+  .icon{
+    width: 100px;
+    height: 100px;
   }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
- <img src="{% static 'images/images.png' %}">
+<nav class="navbar navbar-expand-lg " style="background-color:white;">
+ <img class="icon" src="{% static 'images/funnel.svg'%}">
+ <!-- <i class="fas fa-funnel-dollar"></i> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -28,12 +33,15 @@
   {% else %}
   <div class="collapse navbar-collapse" id="navbarNav">
   <li class="nav-item">
-   <a class="nav-link" href="{% url 'account' %}">Settings</a>
+   <a class="" >Asset Inventory</a>
  </li>
  </div>
+ <a class="nav-link" href="{% url 'account' %}">Settings</a>
        {% endif%}
-  <span class="hello-msg">Hello, {{request.user}}</span>
   <span ><a  class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
+  <span class="hello-msg">Hello, {{request.user}}</span>
+  
+  
 
 
 </nav>
