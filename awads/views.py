@@ -86,6 +86,7 @@ def products(request):
 @allowed_users(allowed_roles= ['admin'])
 def customer(request, pk_test):
     customer = Customer.objects.get(id=pk_test)
+    print(customer)
 
     orders = customer.order_set.all()
     order_count = orders.count()
