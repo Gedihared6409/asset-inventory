@@ -98,7 +98,7 @@ def customer(request, pk_test):
     # context = {'customer':customer, 'orders':orders, 'order_count':order_count,
     # 'myFilter':myFilter}
     context = {'customer':customer,'orders':orders,'order_count':order_count, 'myFilter':myFilter}
-    return render(request, 'accounts/customer.html',context)
+    return render(request, 'accounts/employee.html',context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles= ['employee'])
