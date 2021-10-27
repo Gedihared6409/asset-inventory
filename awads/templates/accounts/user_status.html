@@ -4,7 +4,7 @@
 
 	<div class="col-md">
 		<div class="card card-body">
-			<h5>Employee:</h5>
+			<h5>Employee:{{request.user}}</h5>
 			<hr>
 			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'userpageform' customer.id %}">Place new asset</a>
 			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'userrepairpageform' customer.id %}"> repair an old asset</a>
@@ -18,7 +18,7 @@
 			  		<h5 class="card-title">Total Orders</h5>
 			  	</div>
 			  	<div class="card-body">
-			    	<h3 class="card-title">{{total_orders}}</h3>
+			    	<h3 class="card-title" >{{total_orders}}</h3>
 			  	</div>
 			</div>
 		</div>

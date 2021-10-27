@@ -76,12 +76,12 @@ def accountSettings(request):
         context = {'form':form}
         return render(request, 'accounts/acccounts_setting.html',context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles= ['admin'])
-def products(request):
-    products = Product.objects.all()
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles= ['admin'])
+# def products(request):
+#     products = Product.objects.all()
 
-    return render(request, 'accounts/products.html',{'products':products})
+#     return render(request, 'accounts/products.html',{'products':products})
 @login_required(login_url='login')
 @allowed_users(allowed_roles= ['admin'])
 def customer(request, pk_test):

@@ -14,8 +14,7 @@ urlpatterns=[
     path('userpageform/<str:pk_test>/', views.userPageform, name = "userpageform"),
     path('userrepairform/<str:pk_test>/', views.userrepairPageform, name = "userrepairpageform"),
     path('welcome', views.home, name="home"),
-    path('products/', views.products, name='products'),
-    path('customer/<str:pk_test>/', views.customer, name="customer"),
+    path('employee/<str:pk_test>/', views.customer, name="employee"),
 
     path('create_order/<str:pk>/', views.createOrder, name="create_order"),
     path('update_order/<str:pk>/', views.updateOrder, name="update_order"),
