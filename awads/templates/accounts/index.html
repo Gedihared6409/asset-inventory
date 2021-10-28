@@ -330,6 +330,9 @@ ul {
     width: 100px;
     height: 50px;
   }
+  .all{
+    color: brown;
+  }
 </style>
 <div class="menu-btn">
   <i class="fas fa-bars fa-2x"></i>
@@ -342,19 +345,17 @@ ul {
 <h2>Asset Inventory</h2>
     <ul class="main-menu">
    
-      <li><a href="#">Process</a></li>
-      <li><a href="#">Tools</a></li>
-      <li><a href="#">whats we do</a></li>
-      <li><a href="#">Follow</a></li>
+      <li><a href="#home-cards">Process</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#do">whats we do</a></li>
+      <li><a href="#follow">Follow</a></li>
     </ul>
 
     <ul class="right-menu">
+     
       <li>
-        <a href="#">Login</a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fas fa-shopping-cart"></i>
+        <a href="{% url 'login' %}" class="btn">
+          Login <i class="fas fa-chevron-right"></i>
         </a>
       </li>
     </ul>
@@ -366,13 +367,18 @@ ul {
     <p>
       Inventory all your IT and non-IT assets with the  asset management
     </p>
-    <a href="#" class="btn">
+    <p   class="all"> 
+     To use admin page login with 
+     <br>
+     username:alii  password:aliharedgedi
+    </p>
+    <a href="{% url 'register' %}" class="btn">
       Get Started <i class="fas fa-chevron-right"></i>
     </a>
   </header>
 
   <!-- Home cards 1 -->
-  <section class="home-cards">
+  <section class="home-cards" id="home-cards">
     <div>
       <img src="https://bit.ly/3pKV9GA" alt="">
       <h3>Asset discovery and scanning</h3>
@@ -422,14 +428,14 @@ ul {
       <p>Manage all your asset purchases and control your IT spending. 
         Stay updated on IT purchases with details 
         on vendors, approvals, invoices, payments, and associated assets.</p>
-        <a href="#" class="btn">
+        <a href="{% url 'register' %}" class="btn">
           Register Now <i class="fas fa-chevron-right"></i>
         </a>
     </div>
   </section>
 
   <!-- Home cards 2 -->
-    <section class="home-cards">
+    <section class="home-cards" id="tools">
       <div>
         <img src="https://i.ibb.co/zVqhWn2/card5.png" alt="" />
         <h3>Analytics and reports</h3>
@@ -466,7 +472,7 @@ ul {
     </section>
     
     <!-- Carbon -->
-    <section class="carbon dark">
+    <section class="carbon dark" id="do">
       <div class="content">
         <h2>Asset and Data Inventory</h2>
         <p>
@@ -477,15 +483,15 @@ ul {
     </section>
 
     <!-- Follow -->
-    <section class="follow">
+    <section class="follow" id="follow">
       <p>Follow Asset Inventory</p>
-      <a href="https://facebook.com">
+      <a href="">
         <img src="https://i.ibb.co/LrVMXNR/social-fb.png" alt="Facebook">
       </a>
-      <a href="https://twitter.com">
+      <a href="">
         <img src="https://i.ibb.co/vJvbLwm/social-twitter.png" alt="Twitter">
       </a>
-      <a href="https://linkedin.com">
+      <a href="">
         <img src="https://i.ibb.co/b30HMhR/social-linkedin.png" alt="Linkedin">
       </a>
     </section>
