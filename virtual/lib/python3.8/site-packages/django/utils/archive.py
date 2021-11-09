@@ -27,8 +27,6 @@ import stat
 import tarfile
 import zipfile
 
-from django.core.exceptions import SuspiciousOperation
-
 
 class ArchiveException(Exception):
     """
@@ -135,13 +133,6 @@ class BaseArchive:
                 return False
         return True
 
-    def target_filename(self, to_path, name):
-        target_path = os.path.abspath(to_path)
-        filename = os.path.abspath(os.path.join(target_path, name))
-        if not filename.startswith(target_path):
-            raise SuspiciousOperation("Archive contains invalid path: '%s'" % name)
-        return filename
-
     def extract(self):
         raise NotImplementedError('subclasses of BaseArchive must provide an extract() method')
 
@@ -164,7 +155,7 @@ class TarArchive(BaseArchive):
             name = member.name
             if leading:
                 name = self.split_leading_dir(name)[1]
-            filename = self.target_filename(to_path, name)
+            filename = os.path.join(to_path, name)
             if member.isdir():
                 if filename:
                     os.makedirs(filename, exist_ok=True)
@@ -207,10 +198,8 @@ class ZipArchive(BaseArchive):
             info = self._archive.getinfo(name)
             if leading:
                 name = self.split_leading_dir(name)[1]
-            if not name:
-                continue
-            filename = self.target_filename(to_path, name)
-            if name.endswith(('/', '\\')):
+            filename = os.path.join(to_path, name)
+            if filename.endswith(('/', '\\')):
                 # A directory
                 os.makedirs(filename, exist_ok=True)
             else:
