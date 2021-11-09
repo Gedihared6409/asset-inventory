@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'awads.apps.AwadsConfig',
     'django_filters',
-    'bootstrap4',
+  
 ]
 
 MIDDLEWARE = [
