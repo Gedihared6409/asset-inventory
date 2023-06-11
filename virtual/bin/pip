@@ -1,4 +1,4 @@
-#!/home/ali/Documents/denisivy/virtual/bin/python
+#!/home/hp/Desktop/asset-inventory/virtual/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
