@@ -12,6 +12,7 @@ from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
+# predictions/views.py
 def welcome(request):
      return render(request, 'accounts/index.html')
 @unauthenticated_user

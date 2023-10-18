@@ -15,9 +15,11 @@ import django_heroku
 import dj_database_url
 from decouple import config,Csv
 
-MODE=config("MODE", default="dev")
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+
+DEBUG=True
+
+
+SECRET_KEY = '52gpgg74pa#p%eknqvy0eykat9-y==^l=4a(19p8ktaoj1+1#6'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -83,28 +85,17 @@ WSGI_APPLICATION = 'awaards.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if config('MODE')=="dev":
-   DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.postgresql_psycopg2',
-           'NAME': config('DB_NAME'),
-           'USER': config('DB_USER'),
-           'PASSWORD': config('DB_PASSWORD'),
-           'HOST': config('DB_HOST'),
-           'PORT': '',
-       }
-       
-   }
-# production
-else:
-   DATABASES = {
-       'default': dj_database_url.config(
-           default=config('DATABASE_URL')
-       )
-   }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'awaads',
+        'USER': 'postgres',
+        'PASSWORD': 'ali',
+         # If using a cloud-based service, this will be provided by the service
+        'PORT': '5432',  # The default port for PostgreSQL is 5432
+    }
+}
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS = ['assets-inventoryy.herokuapp.com','127.0.0.1','web-production-208f.up.railway.app']
 
